@@ -3,7 +3,7 @@
       Welcome <%= current_user.name %>!
       <%= link_to "Sign out", signout_path %>
   <% else %>
-      <%= link_to "Sign in with GitHub", '/auth/github' %>
+      <%= link_to "Sign in with Facebook", '/auth/facebook' %>
   <% end %>
   <% if RAILS_ENV == 'development' and current_user == nil %>
       <%= form_for(@user, :url => devsignin_path) do |f| %>
