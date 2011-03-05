@@ -1,0 +1,20 @@
+<p>
+  <% if current_user %>
+      Welcome <%= current_user.name %>!
+      <%= link_to "Sign out", signout_path %>
+  <% else %>
+      <%= link_to "Sign in with GitHub", '/auth/github' %>
+  <% end %>
+  <% if RAILS_ENV == 'development' and current_user == nil %>
+      <%= form_for(@user, :url => devsignin_path) do |f| %>
+        <div class="field">
+          <%= f.label :name %>
+          <br/>
+          <%= f.text_field :name %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Dev sign in" %>
+        </div>
+      <% end %>
+    <% end %>
+</p>
