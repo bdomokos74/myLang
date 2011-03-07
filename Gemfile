@@ -7,7 +7,8 @@ gem 'rails', '3.0.3'
 
 gem 'sqlite3-ruby', '1.3.2', :require => 'sqlite3'
 gem 'omniauth'
-
+gem 'faker', '0.3.1'
+  
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -29,7 +30,6 @@ gem 'omniauth'
 # and rake tasks are available in development mode:
 group :development do
   gem 'rspec-rails', '2.3.0'
-  gem 'faker', '0.3.1'
 end
 
 group :test do

@@ -9,7 +9,7 @@ StoryTracker::Application.routes.draw do
   match '/dashboard',   :to => 'pages#dashboard'
 
   match '/auth/:provider/callback' => 'sessions#create'
-  match '/devsignin' => 'sessions#dev_create', :as => :devsignin
+  match '/devsignin' => 'sessions#dev_signin', :as => :devsignin
   match '/signout' => 'sessions#destroy', :as => :signout
 
   # The priority is based upon order of creation:

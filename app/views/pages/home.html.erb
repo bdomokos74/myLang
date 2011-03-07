@@ -5,8 +5,8 @@
   <% else %>
       <%= link_to "Sign in with Facebook", '/auth/facebook' %>
   <% end %>
-  <% if RAILS_ENV == 'development' and current_user == nil %>
-      <%= form_for(@user, :url => devsignin_path) do |f| %>
+  <% if Rails.env == 'development' and current_user == nil %>
+      <%= form_for(:user, :url => devsignin_path) do |f| %>
         <div class="field">
           <%= f.label :name %>
           <br/>

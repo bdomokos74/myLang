@@ -7,18 +7,21 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     redirect_to root_url, :notice => "Signed in!"
   end
-
-  def dev_create
-    redirect_to root_url unless RAILS_ENV == 'development'
-    curr_user = User.find_by_name(params[:user][:name])
-    if (curr_user)
-      session[:user_id] = curr_user.id
-      flash[:success] = "Signed in!"
+  
+  def dev_signin    
+    if Rails.env != 'development' && Rails.env != 'test'
+      then    
       redirect_to root_url
     else
-      flash[:error] = "Invalid user"
-#      redirect_to root_url
-      render 'show'
+      curr_user = User.find_by_name(params[:user][:name])
+      if (curr_user)
+        session[:user_id] = curr_user.id
+        flash[:success] = "Signed in!"
+        redirect_to root_url
+      else
+        flash[:error] = "Invalid user"
+        redirect_to root_url
+      end
     end
   end
 
@@ -27,7 +30,4 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => "Signed out!"
   end
 
-  def debug
-
-  end
 end
