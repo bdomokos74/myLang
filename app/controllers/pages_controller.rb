@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  
   def home
     @title = "Home"
     @user = User.new
@@ -10,6 +11,9 @@ class PagesController < ApplicationController
 
   def words
     @title = "Words"
+    @user = current_user
+    @items = @user.items.paginate(:page => params[:page], :per_page => 10)
+    @item = Item.new
   end
   
   def quiz

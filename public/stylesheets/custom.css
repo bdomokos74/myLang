@@ -97,3 +97,46 @@ footer {
 footer nav {
   float: none;
 }
+
+
+h1.item {
+  margin-bottom: 0.3em;
+}
+
+table.item {
+  margin-top: 1em;
+}
+
+table.item tr {
+  height: 70px;
+}
+
+table.items tr td.item {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.items tr td.item span.tags {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+table.items tr td.item span.expression {
+  display: block;
+}
+
+table.items tr td.item span.translation {
+  display: block;
+}
+
+form.new_micropost {
+  margin-bottom: 2em;
+}
+
+form.new_micropost textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+

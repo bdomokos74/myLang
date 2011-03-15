@@ -1,5 +1,7 @@
 StoryTracker::Application.routes.draw do
   
+  resources :items
+  
   match '/words', :to => 'pages#words'
   match '/quiz', :to => 'pages#quiz'
   match '/settings', :to => 'pages#settings'

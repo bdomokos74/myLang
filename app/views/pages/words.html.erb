@@ -1,2 +1,15 @@
-<h1>Pages#words</h1>
-<p>Find me in app/views/pages/words.html.erb</p>
+ <table class="front" summary="Add item form">
+    <tr>
+      <td class="main">
+        <h1 class="item">Add new</h1>
+        <%= render 'shared/item_form' %>
+      </td>
+    </tr>
+  </table>
+  
+<% unless @user.items.empty? %>
+  <table class="items" summary="User dictionary items">
+    <%= render @items %>
+  </table>
+  <%= will_paginate @items %>
+<% end %>

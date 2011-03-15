@@ -1,0 +1,15 @@
+<tr>
+  <td class="item">
+    <span class="expression"><%= item.expression %></span>
+    <span class="translation"><%= item.translation %></span>
+    <span class="tags">
+      Tags ... TODO
+    </span>
+  </td>
+  <td>
+    <%= button_to "delete", item, :method => :delete,
+                                     :confirm => "You sure?",
+                                     :title => item.expression %>
+  </td>
+
+</tr>

@@ -1,0 +1,10 @@
+<%= form_for @item do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.text_field :expression %>
+    <%= f.text_field :translation %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
