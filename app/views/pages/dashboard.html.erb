@@ -1,2 +1,6 @@
-<h1>Pages#dashboard</h1>
-<p>Find me in app/views/pages/dashboard.html.erb</p>
+<% unless @user.quizzes.empty? %>
+  <table class="quiz" summary="Quiz items">
+    <tr><th>Created</th><th>Score</th><th>Time</th></tr>
+    <%= render @quizzes %>
+  </table>
+<% end %>

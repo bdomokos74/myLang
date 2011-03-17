@@ -7,6 +7,8 @@ class PagesController < ApplicationController
 
   def dashboard
     @title = "Dashboard"
+    @user = current_user
+    @quizzes = @user.quizzes.where(:status => "completed")
   end
 
   def words
