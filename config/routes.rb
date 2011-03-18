@@ -4,11 +4,13 @@ StoryTracker::Application.routes.draw do
   resources :quizzes do
     resources :questions
     resources :answers
+    member do
+      get :start
+    end
   end
   
   match '/words', :to => 'pages#words'
-  match '/quiz', :to => 'pages#quiz'
-  match '/settings', :to => 'pages#settings'
+  match '/quiz', :to => 'quizzes#start'  
   match '/about', :to => 'pages#about'
   
   match '/contact', :to => 'pages#contact'

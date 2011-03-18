@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Answer do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should have a text attribute" do
+    answer = Answer.new()
+    answer.should respond_to(:text)
+  end
 end

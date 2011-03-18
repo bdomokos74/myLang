@@ -6,7 +6,7 @@ class CreateAnswers < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :answer, :quiz_id
+    add_index :answers, :quiz_id
   end
 
   def self.down

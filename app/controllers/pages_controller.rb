@@ -17,14 +17,6 @@ class PagesController < ApplicationController
     @items = @user.items.paginate(:page => params[:page], :per_page => 10)
     @item = Item.new
   end
-  
-  def quiz
-    @title = "Quiz"
-  end
-  
-  def settings
-    @title = "Settings"
-  end
 
   def contact
     @title = "Contact"

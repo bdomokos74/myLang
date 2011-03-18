@@ -1,0 +1,17 @@
+<%= form_for 'quiz', :url => quizzes_path do |f| %>
+  
+  <%= fields_for 'answers' do |answers_f|%>
+    <% 0.upto(9) do |n| %>
+      Q: <%= @quiz.questions[n].item.expression %><br/>
+      <%= answers_f.label :answers, 'A:' %>
+      <%= answers_f.text_field :text, :index => n, :autocomplete => :off %><br/>
+    <% end %>
+  <% end %>
+  
+  <%= fields_for 'questions' do |questions_f| %>
+    <% 0.upto(9) do |n| %>
+      <%= questions_f.hidden_field :id, :index=>n, :value => @quiz.questions[n].item.id %>
+    <% end %>
+  <% end %>
+  <%= f.submit "Done" %>
+<% end %>

@@ -6,7 +6,9 @@ class CreateQuestions < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :question, :quiz_id
+    add_index :questions, :quiz_id
+    add_index :questions, :item_id
+    add_index :questions, [:quiz_id, :item_id], :unique => true
   end
 
   def self.down

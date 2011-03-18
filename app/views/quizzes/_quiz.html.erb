@@ -1,12 +1,9 @@
+
 <tr>
   <td class="quiz">
-    <%= quiz.created_at %>
+    <a href="<%= quiz_path(quiz) %>"><%= quiz.created_at.strftime("%Y/%m/%d %H:%M") %></a>
   </td>
   <td class="quiz">
-    <%= quiz.score %>
+    <%= quiz.score %>/<%= quiz.questions.length %>
   </td>
-  <td class="quiz">
-    <%= quiz.duration %>
-  </td>
-
 </tr>

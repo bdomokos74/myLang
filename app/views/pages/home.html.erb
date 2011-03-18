@@ -1,7 +1,8 @@
 <p>
   <% if current_user %>
-      Welcome <%= current_user.name %>!
-      <%= link_to "Sign out", signout_path %>
+  <span>Signed in: <%= current_user.name %></span><br/>
+  <span>First add some words, then play quiz!</span><br/>
+    <%= link_to "Sign out", signout_path %>
   <% else %>
       <%= link_to "Sign in with Facebook", '/auth/facebook' %>
   <% end %>

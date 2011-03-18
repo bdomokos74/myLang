@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20110317012842) do
     t.datetime "updated_at"
   end
 
+  add_index "answers", ["quiz_id"], :name => "index_answers_on_quiz_id"
+
   create_table "items", :force => true do |t|
     t.string   "expression"
     t.string   "translation"
@@ -35,6 +37,10 @@ ActiveRecord::Schema.define(:version => 20110317012842) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "questions", ["item_id"], :name => "index_questions_on_item_id"
+  add_index "questions", ["quiz_id", "item_id"], :name => "index_questions_on_quiz_id_and_item_id", :unique => true
+  add_index "questions", ["quiz_id"], :name => "index_questions_on_quiz_id"
 
   create_table "quizzes", :force => true do |t|
     t.string   "status"

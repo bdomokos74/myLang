@@ -1,6 +1,8 @@
-<% unless @user.quizzes.empty? %>
+<% if @user.quizzes.empty? %>
+  <span>No completed quizzes yet.</span>
+<% else%>
   <table class="quiz" summary="Quiz items">
-    <tr><th>Created</th><th>Score</th><th>Time</th></tr>
+    <tr><th>Created</th><th>Score</th></tr>
     <%= render @quizzes %>
   </table>
 <% end %>

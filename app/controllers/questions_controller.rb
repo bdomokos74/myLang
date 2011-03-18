@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_filter :authenticate
 
   def index
-    
+    @questions = Quiz.find(params[:quiz_id]).questions
   end
 
   def create

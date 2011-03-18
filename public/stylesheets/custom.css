@@ -140,3 +140,10 @@ form.new_micropost textarea {
   margin-bottom: 0;
 }
 
+table.qresult tbody tr td span.good {
+  color: green;
+}
+
+table.qresult tbody tr td span.bad {
+  color: red;
+}

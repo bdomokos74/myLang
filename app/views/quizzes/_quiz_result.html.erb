@@ -1,0 +1,13 @@
+<table class="qresult">
+<% 0.upto(9) do |n| %>
+<tr>
+  <td>Q: <%= @quiz.questions[n].item.expression %><br/>
+  <span class="<%= @result[n] %>">A: <%= @quiz.answers[n][:text] %></span><br/>
+<% if @result[n] == 'bad'%>
+  Correct: <%= @quiz.questions[n].item.translation %>
+<% end %>
+  </td>
+</tr>
+<% end %>
+</table>
+<span id="score"><%= @quiz.score %>/<%= @quiz.questions.length %></span>
