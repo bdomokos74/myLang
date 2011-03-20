@@ -1,8 +1,13 @@
+<script type="text/javascript">
+window.onload = function() {
+  document.getElementById('item_expression').focus();
+}
+</script>
 <%= form_for @item do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
-    <%= f.text_field :expression %>
-    <%= f.text_field :translation %>
+    Q: <%= f.text_field :expression, :autocomplete => :off %><br/>
+    A: <%= f.text_field :translation, :autocomplete => :off %><br/>
   </div>
   <div class="actions">
     <%= f.submit "Submit" %>

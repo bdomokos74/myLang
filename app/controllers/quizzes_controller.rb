@@ -19,15 +19,15 @@ class QuizzesController < ApplicationController
     @quiz = current_user.quizzes.create!()
     answers = params[:answers]
     score = 0
-    answers.each {|key, value|
-      i = Integer(key)
-      @quiz.answers.create(:text => value[:text])       
+    0.upto(9) { |i|
+      value = answers[i.to_s][:text]
+      @quiz.answers.create(:text => value)       
     }
     
     questions = params[:questions]
-    questions.each{|key, value|
-      i = Integer(key)
-      @quiz.questions.create(:item_id => value[:id] )
+    0.upto(9) { |i|
+      value=questions[i.to_s][:id] 
+      @quiz.questions.create(:item_id => value )
     }
     
     calc_results()

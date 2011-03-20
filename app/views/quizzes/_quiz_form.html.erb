@@ -1,5 +1,9 @@
+<script type="text/javascript">
+window.onload = function() {
+  document.getElementById('answers_0_text').focus();
+}
+</script>
 <%= form_for 'quiz', :url => quizzes_path do |f| %>
-  
   <%= fields_for 'answers' do |answers_f|%>
     <% 0.upto(9) do |n| %>
       Q: <%= @quiz.questions[n].item.expression %><br/>
