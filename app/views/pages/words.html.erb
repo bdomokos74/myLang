@@ -7,8 +7,8 @@
     </tr>
   </table>
   
-<% unless @user.items.empty? %>
-  <table class="items" summary="User dictionary items">
+<% unless @items.empty? %>
+  <table class="items" summary="Dictionary items">
     <%= render @items %>
   </table>
   <%= will_paginate @items %>

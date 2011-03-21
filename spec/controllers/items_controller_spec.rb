@@ -57,8 +57,33 @@ describe ItemsController do
         post :create, :item => @attr
         flash[:success].should =~ /item created/i
       end
-      
     end
   end
+  
+  describe "DELETE 'destroy'" do
+    before(:each) do
+      @user = test_sign_in(Factory(:user))
+      @other_user = Factory(:other_user)
+      @item1 = Factory(:item1, :user => @user)
+      @other_item1 = Factory(:other_item1, :user => @other_user)
+    end
+      
+    describe "for unauthorized user" do  
+      it "should deny access" do
+        delete :destroy, :id => @other_item1.id
+        response.should redirect_to(root_path)
+      end      
+    end
+    
+    describe "for authorized user" do
+      it "should delete item" do
+        lambda do
+          delete :destroy, :id => @item1.id
+        end.should change(Item, :count).by(-1)
+      end
+    end
+    
+  end
+  
 end
 

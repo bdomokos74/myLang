@@ -33,8 +33,6 @@ describe User do
   describe "items associations" do
     before(:each) do
       @user = User.create_with_omniauth(@attr)
-      @it1 = Factory(:item, :user => @user, :expression => "one", :translation => "uno/una")
-      @it2 = Factory(:item, :user => @user, :expression => "two", :translation => "dos")
     end
     
     it "should respond to items" do

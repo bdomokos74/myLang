@@ -18,7 +18,7 @@ class PagesController < ApplicationController
     return unless signed_in?
     @title = "Words"
     @user = current_user
-    @items = @user.items.paginate(:page => params[:page], :per_page => 10)
+    @items = Item.all.paginate(:page => params[:page], :per_page => 10)
     @item = Item.new
   end
 
