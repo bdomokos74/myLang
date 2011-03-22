@@ -5,11 +5,15 @@ window.onload = function() {
 </script>
 <%= form_for 'quiz', :url => quizzes_path do |f| %>
   <%= fields_for 'answers' do |answers_f|%>
+  <table class="items">
     <% 0.upto(9) do |n| %>
+    <tr><td class="item">
       Q: <%= @quiz.questions[n].item.expression %><br/>
       <%= answers_f.label :answers, 'A:' %>
       <%= answers_f.text_field :text, :index => n, :autocomplete => :off %><br/>
+    </td></tr>    
     <% end %>
+  </table>
   <% end %>
   
   <%= fields_for 'questions' do |questions_f| %>

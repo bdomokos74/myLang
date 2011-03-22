@@ -13,15 +13,6 @@ class PagesController < ApplicationController
     @quizzes = @user.quizzes.where(:status => "completed")
   end
 
-  def words
-    authenticate
-    return unless signed_in?
-    @title = "Words"
-    @user = current_user
-    @items = Item.all.paginate(:page => params[:page], :per_page => 10)
-    @item = Item.new
-  end
-
   def contact
     @title = "Contact"
   end

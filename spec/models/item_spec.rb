@@ -46,4 +46,11 @@ describe Item do
     end    
   end
   
+  describe "tags" do
+    it "should have a tag_list attribute" do
+      item = @user.items.create(@attr)
+      item.should respond_to(:tag_list)
+    end
+  end
+  
 end

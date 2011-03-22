@@ -98,6 +98,22 @@ footer nav {
   float: none;
 }
 
+table.profile {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+td.main {
+  width: 70%;
+  padding: 1em;
+}
+
+td.sidebar {
+  width: 30%;
+  padding: 1em;
+  vertical-align: top;
+  background: #ffc;
+}
 
 h1.item {
   margin-bottom: 0.3em;
@@ -111,23 +127,23 @@ table.item tr {
   height: 70px;
 }
 
-table.items tr td.item {
+table.items tbody tr td.item {
   border-top: 1px solid #ccc;
   vertical-align: top;
   padding-top: 10px;
 }
 
-table.items tr td.item span.tags {
+table.items tbody tr td.item span.tags {
   display: block;
   font-size: 85%;
   color: #666;
 }
 
-table.items tr td.item span.expression {
+table.items tbody tr td.item span.expression {
   display: block;
 }
 
-table.items tr td.item span.translation {
+table.items tbody tr td.item span.translation {
   display: block;
 }
 
@@ -147,3 +163,4 @@ table.qresult tbody tr td span.good {
 table.qresult tbody tr td span.bad {
   color: red;
 }
+

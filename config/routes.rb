@@ -9,10 +9,7 @@ StoryTracker::Application.routes.draw do
     end
   end
   
-  match '/words', :to => 'pages#words'
-  match '/quiz', :to => 'quizzes#start'  
   match '/about', :to => 'pages#about'
-  
   match '/contact', :to => 'pages#contact'
   match '/dashboard',   :to => 'pages#dashboard'
 

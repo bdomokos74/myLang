@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ItemsController do
   render_views
-
+  
   describe "access control" do
     it "should deny access to create" do
       post :create
@@ -28,7 +28,7 @@ describe ItemsController do
       it "should not create the item" do
         lambda do
           post :create, :item => @attr
-        end.should_not change(Item, :count)      
+        end.should_not change(Item, :count)
       end
       
       it "should render the root page" do
@@ -36,7 +36,7 @@ describe ItemsController do
         response.should redirect_to(root_path)
       end
     end
-  
+    
     describe "success" do
       before(:each) do
         @attr = { :expression => "hah", :translation => "blah"}
@@ -48,9 +48,9 @@ describe ItemsController do
         end.should change(Item, :count).by(1)
       end
       
-      it "should redirect to the words page" do
+      it "should redirect to the items page" do
         post :create, :item => @attr
-        response.should redirect_to(words_path)
+        response.should redirect_to(items_path)
       end
       
       it "should have a flash message" do
@@ -67,12 +67,12 @@ describe ItemsController do
       @item1 = Factory(:item1, :user => @user)
       @other_item1 = Factory(:other_item1, :user => @other_user)
     end
-      
-    describe "for unauthorized user" do  
+    
+    describe "for unauthorized user" do
       it "should deny access" do
         delete :destroy, :id => @other_item1.id
         response.should redirect_to(root_path)
-      end      
+      end
     end
     
     describe "for authorized user" do
@@ -85,5 +85,26 @@ describe ItemsController do
     
   end
   
+  describe "GET 'index'" do
+    before(:each) do
+      @user = Factory(:user)
+      test_sign_in(@user.id)
+    end
+    
+    it "should show every user's items" do
+      it1 = Factory(:item1, :user => @user)
+      it2 = Factory(:item2, :user => @user)
+      user2 = Factory(:other_user)
+      it3 = Factory(:other_item1, :user => user2)
+      
+      get :index
+      response.should have_selector("span.expression", :content => "one")
+      response.should have_selector("span.translation", :content => "uno/una")
+      response.should have_selector("span.expression", :content => "two")
+      response.should have_selector("span.translation", :content => "dos")
+      response.should have_selector("span.expression", :content => "three")
+      response.should have_selector("span.translation", :content => "tres")
+    end
+  end
 end
 

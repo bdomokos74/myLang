@@ -1,0 +1,23 @@
+<table class="profile" summary="Items">
+  <tr>
+    <td class="main">
+      <%= render 'item_form' %>
+      <% unless @items.empty? %>
+      <table class="items" summary="Dictionary items">
+        <%= render @items %>
+      </table>
+      <%= will_paginate @items %>
+      <% end %>
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= @user.name %><br />
+      Tags:<br/>
+      <%= link_to 'All', { :action => :index } %>
+      <% @tags.each do |tag| %>
+        <%= link_to tag.name, :action => :index, :tag => tag.name %>
+      <% end %>
+
+    </td>
+  </tr>
+</table>
+
