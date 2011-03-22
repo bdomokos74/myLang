@@ -10,13 +10,12 @@
       <% end %>
     </td>
     <td class="sidebar round">
-      <strong>Name</strong> <%= @user.name %><br />
+    <%= render :partial => 'shared/sidebar_user' %>
       Tags:<br/>
       <%= link_to 'All', { :action => :index } %>
       <% @tags.each do |tag| %>
         <%= link_to tag.name, :action => :index, :tag => tag.name %>
       <% end %>
-
     </td>
   </tr>
 </table>

@@ -3,6 +3,9 @@ window.onload = function() {
   document.getElementById('answers_0_text').focus();
 }
 </script>
+<table class="profile">
+  <tr>
+    <td class="main">
 <%= form_for 'quiz', :url => quizzes_path do |f| %>
   <%= fields_for 'answers' do |answers_f|%>
   <table class="items">
@@ -22,4 +25,15 @@ window.onload = function() {
     <% end %>
   <% end %>
   <%= f.submit "Done" %>
+</td>
+<td class="sidebar round">
+  <%= render :partial => 'shared/sidebar_user' %>
+  Tags:<br/>
+  <%= link_to 'All', :action => :index, :start => 'yes' %>
+  <% @tags.each do |tag| %>
+  <%= link_to tag.name, :action => :index, :tag => tag.name, :start => 'yes' %>
+  <% end %>
 <% end %>
+</td>
+</tr>
+</table>

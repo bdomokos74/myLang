@@ -2,15 +2,22 @@ class QuizzesController < ApplicationController
   before_filter :authenticate
   
   def index
-    if( params[:start] == 'yes')
-      @title = "Quiz"
-      user = current_user
-      @quiz = user.quizzes.build()
-      items = Item.all.shuffle
+    @title = "Quiz"
+    if( params[:start] == 'yes')      
+      @user = current_user
+      @quiz = @user.quizzes.build()      
+      if(!params[:tag]||params[:tag]=='All')
+        items = Item.all
+      elsif
+        items = Item.tagged_with(params[:tag])
+      end
+      items.shuffle!
       1.upto(10) { |n| @quiz.questions.build(:item_id => items[n].id) }
+      @tags = Item.tag_counts_on(:tags)
       render '_quiz_form'
     else
-      @quizzes = Quiz.all
+      @user = current_user
+      @quizzes = @user.quizzes.where(:status => "completed")
     end
   end  
 

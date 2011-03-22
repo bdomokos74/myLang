@@ -26,13 +26,6 @@ describe PagesController do
     before(:each) do
       @user = Factory(:user)
       test_sign_in(@user.id)
-    end
-    
-    describe "GET 'dashboard'" do
-      it "should be successful" do
-        get 'dashboard'
-        response.should be_success
-      end
-    end
+    end    
   end
 end

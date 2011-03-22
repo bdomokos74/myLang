@@ -10,8 +10,7 @@ StoryTracker::Application.routes.draw do
   end
   
   match '/about', :to => 'pages#about'
-  match '/contact', :to => 'pages#contact'
-  match '/dashboard',   :to => 'pages#dashboard'
+  match '/contact', :to => 'pages#contact'  
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/devsignin' => 'sessions#dev_signin', :as => :devsignin
