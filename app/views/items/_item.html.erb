@@ -1,18 +1,57 @@
-<tr>
-  <td class="item">
-    <span class="expression"><%= item.expression %></span>
-    <span class="translation"><%= item.translation %><%= link_to image_tag("speaker.png", :alt => "Google Translate"),
-    "http://translate.google.com/translate_t?hl=&ie=UTF-8&text=#{item.translation}&sl=es&tl=en",
-    :target=>'_blank'%></span>
-    <span class="tags">Tags: <%= item.tag_list %></span>
+<tr id="item<%= item.id %>" class="showform <% if (item_counter%2 == 1) then %>grey<% else %>white<%end%>">
+  <td class="item" >
+
+        <span class="expression" id="item_expression_<%= item.id%>"><%= item.expression %></span>
+<br/>
+        <span class="translation" id="item_translation_<%= item.id%>"><%= item.translation %><%= link_to image_tag("speaker.png", :alt => "Google Translate"),
+      "http://translate.google.com/translate_t?hl=&ie=UTF-8&text=#{item.translation}&sl=es&tl=en",
+      :target=>'_blank'%></span>
+<br/>
+        <span class="tags" id="item_tag_list_<%= item.id%>">Tags: <%= item.tag_list %></span>
+<br/>        
+     <% if current_user?(item.user) %>
+        <%=
+          button_to "delete", item_path(item), :method => :delete
+        %>
+        <%= 
+        button_to_function "edit", "$(\"#item#{item.id}\").removeClass('showform');
+        $(\"#item#{item.id}\").addClass('hideform');
+        $(\"#itemedit#{item.id}\").addClass('showform');
+        $(\"#itemedit#{item.id}\").removeClass('hideform');
+        $(\"#item_expression_#{item.id}\").focus();"
+        %>
+        <% end %>
+
   </td>
-  <td class="item">
-    <%= 
-    if current_user?(item.user)
-      button_to "delete", item, :method => :delete,
-                                     :confirm => "You sure?",
-                                     :title => item.expression 
-    end
-                                    %>
+</tr>
+  
+<tr id="itemedit<%= item.id %>" class="hideform  <% if (item_counter%2 == 1) then %>grey<% else %>white<%end%>">
+  <td class="item white">
+<div class="formcontainer">
+
+    <%= form_for item, :url => item_path(item), :html => { :method => :put }, :remote => true, :class => 'white' do |f| %>
+  <div class="fields">
+      <div class="field">
+
+          <%= f.text_field( :expression, :autocomplete => :off) %>
+      </div>
+      <div class="field">
+
+          <%= f.text_field( :translation, :autocomplete => :off) %>
+      </div>
+      <div class="field">
+
+          <%= f.text_field( :tag_list, :autocomplete => :off) %>
+      </div>
+
+
+          <%= f.submit "Submit" %><br/>
+          <%= button_to_function "Cancel", "$(\"#itemedit#{item.id}\").removeClass('showform');
+$(\"#itemedit#{item.id}\").addClass('hideform');
+$(\"#item#{item.id}\").addClass('showform');
+$(\"#item#{item.id}\").removeClass('hideform');"%>        
+  </div>
+    <% end %>
+</div>
   </td>
 </tr>

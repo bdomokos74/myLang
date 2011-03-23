@@ -1,0 +1,5 @@
+$("#item<%=@item.id%>").addClass('showform');$("#item<%=@item.id%>").removeClass('hideform');
+$("#itemedit<%=@item.id%>").removeClass('showform');$("#itemedit<%=@item.id%>").addClass('hideform');
+$("#item_expression_<%=@item.id%>").text("<%=@item.expression%>");
+$("#item_translation_<%=@item.id%>").text("<%=@item.translation%>");
+$("#item_tag_list_<%=@item.id%>").text("Tags: <%=@item.tag_list%>");
