@@ -1,7 +1,9 @@
 <tr>
   <td class="item">
     <span class="expression"><%= item.expression %></span>
-    <span class="translation"><%= item.translation %></span>
+    <span class="translation"><%= item.translation %><%= link_to image_tag("speaker.png", :alt => "Google Translate"),
+    "http://translate.google.com/translate_t?hl=&ie=UTF-8&text=#{item.translation}&sl=es&tl=en",
+    :target=>'_blank'%></span>
     <span class="tags">Tags: <%= item.tag_list %></span>
   </td>
   <td class="item">

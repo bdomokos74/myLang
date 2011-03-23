@@ -2,7 +2,11 @@
   <% if current_user %>
   <span>Signed in: <%= current_user.name %></span><br/>
   <span>First add some words, then play quiz!</span><br/>
-    <%= link_to "Sign out", signout_path %>
+  <span>Spanish chars on Win:</span><br/>
+  <span>Right Alt-1 -> ¡</span><br/>
+  <span>Right Alt-/ -> ¿</span><br/>
+  <span>Right Alt-n -> ñ</span><br/>
+  <%= link_to "Sign out", signout_path %>
   <% else %>
       <%= link_to "Sign in with Facebook", '/auth/facebook' %>
   <% end %>
