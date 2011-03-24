@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
       @items = Item.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 10)
     end
     @item = @user.items.build()
-    @tags = Item.tag_counts_on(:tags, :order =>'taggings.created_at')
+    @tags = Item.tag_counts_on(:tags)
   end
   
   def create
