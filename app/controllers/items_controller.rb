@@ -28,6 +28,19 @@ class ItemsController < ApplicationController
     end
   end
   
+  def update
+    @item = Item.find(params[:id])
+    @item.expression = params[:item][:expression]
+    @item.translation = params[:item][:translation]
+    @item.tag_list = params[:item][:tag_list]
+    @item.save!
+    print "item #{@item.id} saved"
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+  
   def destroy
     @item.destroy
     flash[:success] = "Item deleted."

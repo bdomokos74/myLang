@@ -3,22 +3,20 @@ window.onload = function() {
   document.getElementById('item_expression').focus();
 }
 </script>
+<div class="formcontainer">
 <%= form_for @item do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
     <%= f.label 'Q:' %> 
-    <br/>
-    <%= f.text_field :expression, :autocomplete => :off %><br/>
+    <%= f.text_field :expression, :autocomplete => :off %>
   </div>
   <div class="field">
     <%= f.label 'A:' %>
-    <br/>
-    <%= f.text_field :translation, :autocomplete => :off %><br/>
+    <%= f.text_field :translation, :autocomplete => :off %>
   </div>
   <div class="field">
     <%= f.label 'Tags:' %>
-    <br/>
-    <%= f.text_field :tag_list, :autocomplete => :off, :value => session[:last_tag] %><br/>
+    <%= f.text_field :tag_list, :autocomplete => :off, :value => session[:last_tag] %>
   </div>
   <div class="actions">
     <%= f.submit "Submit" %>
