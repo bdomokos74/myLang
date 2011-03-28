@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name
   has_many :items
   has_many :quizzes
+  has_many :missed_words
   
   def self.create_with_omniauth(auth)
     create! do |user|

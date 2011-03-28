@@ -2,9 +2,7 @@ class ItemsController < ApplicationController
   before_filter :authenticate
   before_filter :authorized_user, :only => :destroy
   
-  def index
-    authenticate
-    return unless signed_in?
+  def index    
     @title = "Words"
     @user = current_user
     if !params[:tag] || params[:tag]=='All'
@@ -13,7 +11,8 @@ class ItemsController < ApplicationController
       @items = Item.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 10)
     end
     @item = @user.items.build()
-    @tags = Item.tag_counts_on(:tags)
+    @tag_array = sorted_tag_array
+    @missed = missed_words_array
   end
   
   def create
@@ -39,6 +38,13 @@ class ItemsController < ApplicationController
       format.html
       format.js
     end
+  end
+  
+  def show
+    @user = current_user
+    @item = Item.find(params[:id])
+    @tag_array = sorted_tag_array
+    @missed = missed_words_array
   end
   
   def destroy

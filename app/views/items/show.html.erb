@@ -1,13 +1,10 @@
 <table class="profile" summary="Items">
   <tr>
     <td class="main">
-      <%= render 'item_form' %>
-      <% unless @items.empty? %>
-      <table class="items" summary="Dictionary items">
-        <%= render @items %>
-      </table>
-      <%= will_paginate @items %>
-      <% end %>
+    <span>
+      <%= @item.expression%><br/>
+      <%= @item.translation%><br/>
+    </span>
     </td>
     <td class="sidebar round">
       <%= render :partial => 'shared/sidebar_user' %>
@@ -16,4 +13,3 @@
     </td>
   </tr>
 </table>
-

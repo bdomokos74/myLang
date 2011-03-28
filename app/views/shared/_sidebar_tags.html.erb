@@ -1,0 +1,5 @@
+Tags:<br/>
+<%= link_to 'All', :controller => "items", :action => :index %>
+<% @tag_array.each do |tag| %>
+<%= link_to tag[:name], :controller => "items", :action => :index, :tag => tag[:name] %>
+<% end %>

@@ -1,6 +1,8 @@
+<table class="profile" summary="Items">
+  <tr>
+    <td class="main">
 <p>
   <% if current_user %>
-  <span>Signed in: <%= current_user.name %></span><br/>
   <span>First add some words, then play quiz!</span><br/>
   <span>Spanish chars on Win:</span><br/>
   <span>Right Alt-1 -> ¡</span><br/>
@@ -10,6 +12,7 @@
   <% else %>
       <%= link_to "Sign in with Facebook", '/auth/facebook' %>
   <% end %>
+  
   <% if Rails.env == 'development' and current_user == nil %>
       <%= form_for(:user, :url => devsignin_path) do |f| %>
         <div class="field">
@@ -23,3 +26,15 @@
       <% end %>
     <% end %>
 </p>
+    </td>
+    <% if current_user %>
+    <td class="sidebar round">
+      <%= render :partial => 'shared/sidebar_user' %>
+      <%= render :partial => 'shared/sidebar_tags' %>
+      <%= render :partial => 'shared/sidebar_missed'%>
+    </td>
+    <% elsif %>
+    <td></td>
+    <% end %>
+  </tr>
+</table>

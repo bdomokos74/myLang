@@ -6,7 +6,7 @@ module ApplicationHelper
     else
       "#{base_title} | #{@title}"
     end
-  end
+  end  
 end
 
 

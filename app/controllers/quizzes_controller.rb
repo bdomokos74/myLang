@@ -8,12 +8,22 @@ class QuizzesController < ApplicationController
       @quiz = @user.quizzes.build()      
       if(!params[:tag]||params[:tag]=='All')
         items = Item.all
-      elsif
+        @current_tag = 'All'
+      elsif(!params[:tag]||params[:tag]=='Missed')
+        missed = MissedWord.where(:user_id => @user.id).limit(50).order("count DESC").all
+        items = missed.collect { |m| m.item }
+        @current_tag = 'Missed'
+      else
         items = Item.tagged_with(params[:tag])
+        @current_tag = params[:tag]
       end
       items.shuffle!
-      1.upto(10) { |n| @quiz.questions.build(:item_id => items[n].id) }
-      @tags = Item.tag_counts_on(:tags)
+      0.upto([9, items.length-1].min) { |n| 
+        print("n=#{n}, item[n].id=#{items[n].id}\n")
+        @quiz.questions.build(:item_id => items[n].id) 
+       }
+      @tag_array = sorted_tag_array
+      @missed = missed_words_array
       render '_quiz_form'
     else
       @user = current_user
@@ -22,13 +32,14 @@ class QuizzesController < ApplicationController
   end  
 
   def create
-    @title = "Result"    
-    @quiz = current_user.quizzes.create!()
+    @title = "Result"  
+    @user = current_user
+    @quiz = @user.quizzes.create!()
     answers = params[:answers]
     score = 0
     0.upto(9) { |i|
       value = answers[i.to_s][:text]
-      @quiz.answers.create(:text => value)       
+      @quiz.answers.create(:text => value)
     }
     
     questions = params[:questions]
@@ -38,6 +49,7 @@ class QuizzesController < ApplicationController
     }
     
     calc_results()
+    add_missed()
     @quiz.score = calc_score()
     @quiz.status = 'completed'
     @quiz.save
@@ -52,6 +64,21 @@ class QuizzesController < ApplicationController
   end
   
   private
+  
+  def add_missed    
+    @quiz.answers.each_index do |i|      
+      if !correct?(i)
+        missed = MissedWord.where(:user_id =>  @user.id, :item_id => @quiz.questions[i].item.id).first
+        if missed.nil?
+          missed = @user.missed_words.create!()
+          missed.item = @quiz.questions[i].item
+          missed.count = 0
+        end                
+        missed.count +=1
+        missed.save!
+      end
+    end
+  end
   
   def calc_results
     @result = []

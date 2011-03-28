@@ -3,13 +3,15 @@ window.onload = function() {
   document.getElementById('answers_0_text').focus();
 }
 </script>
+<span>Quiz tag: <%= @current_tag%></span><br/>
 <table class="profile">
   <tr>
     <td class="main">
 <%= form_for 'quiz', :url => quizzes_path do |f| %>
   <%= fields_for 'answers' do |answers_f|%>
   <table class="items">
-    <% 0.upto(9) do |n| %>
+	
+    <% 0.upto(@quiz.questions.length-1) do |n| %>
     <tr><td class="item">
       Q: <%= @quiz.questions[n].item.expression %><br/>
       <%= answers_f.label :answers, 'A:' %>
@@ -20,7 +22,7 @@ window.onload = function() {
   <% end %>
   
   <%= fields_for 'questions' do |questions_f| %>
-    <% 0.upto(9) do |n| %>
+    <% 0.upto(@quiz.questions.length-1) do |n| %>
       <%= questions_f.hidden_field :id, :index=>n, :value => @quiz.questions[n].item.id %>
     <% end %>
   <% end %>
@@ -30,9 +32,11 @@ window.onload = function() {
   <%= render :partial => 'shared/sidebar_user' %>
   Tags:<br/>
   <%= link_to 'All', :action => :index, :start => 'yes' %>
-  <% @tags.each do |tag| %>
-  <%= link_to tag.name, :action => :index, :tag => tag.name, :start => 'yes' %>
+  <%= link_to 'Missed', :action => :index, :start => 'yes', :tag => "Missed" %>
+  <% @tag_array.each do |tag| %>
+    <%= link_to tag[:name], :action => :index, :tag => tag[:name], :start => 'yes' %>
   <% end %>
+  <%= render :partial => 'shared/sidebar_missed' %>
 <% end %>
 </td>
 </tr>

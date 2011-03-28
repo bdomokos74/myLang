@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110321224218) do
+ActiveRecord::Schema.define(:version => 20110325194610) do
 
   create_table "answers", :force => true do |t|
     t.string   "text"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(:version => 20110321224218) do
   end
 
   add_index "items", ["user_id"], :name => "index_items_on_user_id"
+
+  create_table "missed_words", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.integer  "count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "missed_words", ["count"], :name => "index_missed_words_on_count"
+  add_index "missed_words", ["user_id"], :name => "index_missed_words_on_user_id"
 
   create_table "questions", :force => true do |t|
     t.integer  "item_id"

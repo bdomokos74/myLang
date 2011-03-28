@@ -5,6 +5,7 @@ class Item < ActiveRecord::Base
   default_scope :order => 'items.created_at DESC'
 
   belongs_to :user
+  has_many :missed_word, :dependent => :destroy
   
   validates :user_id, :presence => true
   validates :expression, :presence => true, :length => { :minimum => 1}
