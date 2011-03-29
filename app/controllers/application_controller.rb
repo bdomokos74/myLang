@@ -14,9 +14,7 @@ class ApplicationController < ActionController::Base
   end
   
   def missed_words_array
-    # @user.missed_words.collect{ |m| m.item }
     missed = MissedWord.where(:user_id => @user.id).limit(50).order("count DESC").all
-    missed.collect{ |m| m.item }
   end
   
 end

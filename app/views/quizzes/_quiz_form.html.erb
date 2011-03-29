@@ -36,7 +36,6 @@ window.onload = function() {
   <% @tag_array.each do |tag| %>
     <%= link_to tag[:name], :action => :index, :tag => tag[:name], :start => 'yes' %>
   <% end %>
-  <%= render :partial => 'shared/sidebar_missed' %>
 <% end %>
 </td>
 </tr>

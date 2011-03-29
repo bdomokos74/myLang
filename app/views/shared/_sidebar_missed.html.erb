@@ -1,8 +1,8 @@
 <span>
   <% if @missed %>
   <br/>Missed:<br/>
-  <% @missed.each do |item|%>
-    <%= link_to item.translation, item_path(item) %>
+  <% @missed.each do |m|%>
+    <%= link_to "#{m.item.translation}(#{m.count})", item_path(m.item) %>
   <% end %>
   <% end %>
 </span>

@@ -23,7 +23,6 @@ class QuizzesController < ApplicationController
         @quiz.questions.build(:item_id => items[n].id) 
        }
       @tag_array = sorted_tag_array
-      @missed = missed_words_array
       render '_quiz_form'
     else
       @user = current_user
@@ -53,11 +52,16 @@ class QuizzesController < ApplicationController
     @quiz.score = calc_score()
     @quiz.status = 'completed'
     @quiz.save
+    @tag_array = sorted_tag_array
+    @missed = missed_words_array
   end
   
   def show
     @quiz = Quiz.find(params[:id])
-    calc_results()      
+    @user = current_user
+    calc_results()
+    @tag_array = sorted_tag_array
+    @missed = missed_words_array
   end
 
     def destroy

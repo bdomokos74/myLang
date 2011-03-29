@@ -1,13 +1,31 @@
-<table class="qresult">
-<% 0.upto(9) do |n| %>
-<tr>
-  <td>Q: <%= @quiz.questions[n].item.expression %><br/>
-  <span class="<%= @result[n] %>">A: <%= @quiz.answers[n][:text] %></span><br/>
-<% if @result[n] == 'bad'%>
-  Correct: <%= @quiz.questions[n].item.translation %>
-<% end %>
-  </td>
+<table class="profile">
+	<tr>
+		<td class="main">
+
+			<table class="qresult">
+			<% 0.upto(9) do |n| %>
+			<tr>
+				<td>Q: <%= @quiz.questions[n].item.expression %><br/>
+					<span class="<%= @result[n] %>">A: <%= @quiz.answers[n][:text] %></span><br/>
+					<% if @result[n] == 'bad'%>
+					Correct: <%= @quiz.questions[n].item.translation %>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+		<span id="score"><%= @quiz.score %>/<%= @quiz.questions.length %></span>
+
+	</td>
+	<td class="sidebar round">
+		<%= render :partial => 'shared/sidebar_user' %>
+		Tags:<br/>
+		<%= link_to 'All', :action => :index, :start => 'yes' %>
+		<%= link_to 'Missed', :action => :index, :start => 'yes', :tag => "Missed" %>
+		<% @tag_array.each do |tag| %>
+			<%= link_to tag[:name], :action => :index, :tag => tag[:name], :start => 'yes' %>
+		<% end %>
+		<%= render :partial => 'shared/sidebar_missed'%>
+	</td>
 </tr>
-<% end %>
 </table>
-<span id="score"><%= @quiz.score %>/<%= @quiz.questions.length %></span>
